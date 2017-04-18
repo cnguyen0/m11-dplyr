@@ -25,11 +25,11 @@ histo <- hist(flights$gain)
 the.mean <- mean(flights$gain)
 
 # Create a data.frame that is of flights headed to seatac ('SEA'), 
-flights.to.sea <- filter(flights, dest == 'SEA')
+flights.to.sea <- flights %>% select(gain, dest) %>% filter(dest == 'SEA')
 
 
 # On average, did flights to seatac gain or loose time?
-sea.avg <- mean(flights.to.sea$gain)
+sea.avg <- mean(flights.to.sea$gain, na.rm = TRUE)
 
 ### Bonus ###
 # Write a function that allows you to specify an origin, a destination, and a column of interest
