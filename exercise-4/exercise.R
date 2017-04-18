@@ -10,24 +10,26 @@ library(dplyr)
 View(flights)
 
 # Add a column that is the amount of time gained in the air (`arr_delay` - `dep_delay`)
-
+flights <- mutate(flights, gain = arr_delay - dep_delay)
 
 # Sort your data.frame desceding by the column you just created
-
+arrange(flights, desc(gain))
 
 # Try doing the last 2 steps in a single operation using the pipe operator
-
+flights <- mutate(flights, gain = arr_delay - dep_delay) %>% arrange(flights, desc(gain))
 
 # Make a histogram of the amount of gain using the `hist` command
-
+histo <- hist(flights$gain)
 
 # On average, did flights gain or lose time?
-
+the.mean <- mean(flights$gain)
 
 # Create a data.frame that is of flights headed to seatac ('SEA'), 
+flights.to.sea <- filter(flights, dest == 'SEA')
 
 
 # On average, did flights to seatac gain or loose time?
+sea.avg <- mean(flights.to.sea$gain)
 
 ### Bonus ###
 # Write a function that allows you to specify an origin, a destination, and a column of interest
